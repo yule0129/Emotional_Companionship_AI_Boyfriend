@@ -1,4 +1,4 @@
-# AI Practice
+# Emotional_Companionship_AI_Boyfriend
 
 一个基于 LangChain 和 DeepSeek 的 AI 男友聊天陪伴项目。它的核心不是冷冰冰地回答问题，而是通过稳定人设、长期记忆、时间感知和细腻回应，提供持续的情绪陪伴与情绪价值。
 
