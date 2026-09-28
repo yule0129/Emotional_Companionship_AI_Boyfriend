@@ -140,14 +140,20 @@ chat_history = [
 MAX_HISTORY_LENGTH = 10
 
 
+#-----------------------------------------------------------------------
+
+
+
 print("你可以开始和他聊天了，输入 'exit' 或 'quit' 来结束对话。")
 while True:
-    print("\n")
+
     try:
         user_input = input("你:")
     except EOFError:
         print("他：先到这。")
         break
+
+    print("\n")
 
     if user_input.lower() in ["exit", "quit"]:
         save_last_visit_time()
@@ -185,6 +191,8 @@ while True:
         final_reply_text = stream_agent_reply(prompt_messages)
         final_reply = AIMessage(content=final_reply_text)
         chat_history.append(final_reply)
+
+    print("\n")
 
     if len(chat_history) > 1 + MAX_HISTORY_LENGTH * 2:
         chat_history = [chat_history[0]] + chat_history[-MAX_HISTORY_LENGTH * 2:]

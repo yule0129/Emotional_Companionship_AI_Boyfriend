@@ -20,6 +20,9 @@
 ```text
 .
 ├── main.py                  # 程序入口，负责聊天循环、陪伴上下文、工具调用、记忆和 RAG 拼接
+├── api_server.py            # Web API 入口，复用现有后端模块
+├── frontend/
+│   └── index.html           # Web 聊天界面
 ├── config.py                # 模型配置，读取环境变量并初始化 LLM
 ├── prompts.py               # AI 男友人设提示词和长期记忆提取提示词
 ├── memory_system.py         # 长期记忆的提取、保存和读取
@@ -28,8 +31,8 @@
 ├── knowledge/               # 本地知识资料
 │   ├── 数据结构学习.md
 │   └── 数学建模模型.txt
-├── requirements.txt         # Python 依赖
-└── long_term_memory.db      # SQLite 长期记忆数据库，运行后生成或更新
+├── PROJECT_GUIDE.md         # 项目架构与模块说明
+└── requirements.txt         # Python 依赖
 ```
 
 ## 环境要求
@@ -86,6 +89,18 @@ SILICONFLOW_BASE_URL=你的 SiliconFlow Base URL
 ```bash
 python main.py
 ```
+
+## Web 前端
+
+项目现在也提供了一个可直接访问的陪伴式 Web 界面。它复用现有的模型、人设、长期记忆、天气工具和 RAG 逻辑：
+
+```powershell
+.\venv\Scripts\Activate.ps1
+python -m uvicorn api_server:app --host 127.0.0.1 --port 8000
+```
+
+然后打开 <http://127.0.0.1:8000>。聊天接口为 `POST /api/chat`，健康检查为 `GET /api/health`。
+首次运行如未安装 Web 服务依赖，请执行 `pip install fastapi uvicorn`。
 
 启动后会进入命令行聊天。你可以像和一个长期陪伴对象聊天一样输入日常想法、情绪、问题或近况：
 
